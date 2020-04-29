@@ -15,21 +15,21 @@ type ReadWriteDiscarder struct {
 
 func (d *ReadWriteDiscarder) Write(p []byte) (n int, err error) {
 	if d.Conn != nil {
-        log.Println("Passing through a write")
+		log.Println("Passing through a write")
 		return d.Conn.Write(p)
 	}
 
-    log.Println("discarding a write")
+	log.Println("discarding a write")
 	return len(p), nil
 }
 
 func (d *ReadWriteDiscarder) Read(p []byte) (n int, err error) {
 	if d.Conn != nil {
-        log.Println("Passing through a read")
+		log.Println("Passing through a read")
 		return d.Conn.Read(p)
 	}
 
-    log.Println("discarding a read")
+	log.Println("discarding a read")
 	return 0, nil
 }
 
@@ -55,7 +55,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-        log.Println("Accepted a client connection")
+		log.Println("Accepted a client connection")
 
 		proxy(conn)
 	}
